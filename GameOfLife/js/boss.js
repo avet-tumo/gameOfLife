@@ -1,7 +1,6 @@
-class Boss {
+class Boss extends LivingCreature{
     constructor(x, y) {
-        this.x = x
-        this.y = y
+       super(x,y)
         this.energy = 10
         this.multiply = 0
         this.directions = [

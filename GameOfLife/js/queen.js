@@ -1,7 +1,6 @@
-class Queen {
+class Queen extends LivingCreature{
     constructor(x, y) {
-        this.x = x
-        this.y = y
+        super(x,y)
         this.energy = 20
         this.multiply = 0
         this.directions = []
