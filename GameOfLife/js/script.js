@@ -1,34 +1,34 @@
-function theend(){
-    for(var i = 8; i < 13; i++){
+function theend() {
+    for (var i = 8; i < 13; i++) {
         matrix[6][i] = 3
     }
     matrix[8][15] = 5
-    for(var i = 6; i < 11; i++){
+    for (var i = 6; i < 11; i++) {
         matrix[i][10] = 3
         matrix[i][14] = 3
         matrix[i][16] = 3
         matrix[i][18] = 3
     }
-    for(var i = 6; i < 12; i = i + 2){
+    for (var i = 6; i < 12; i = i + 2) {
         matrix[i][19] = 3
         matrix[i][20] = 3
     }
-    for(var i = 13; i < 18; i++){
+    for (var i = 13; i < 18; i++) {
         matrix[i][9] = 3
         matrix[i][13] = 3
         matrix[i][16] = 3
         matrix[i][18] = 3
     }
-    for(var i = 13; i < 19; i = i + 2){
+    for (var i = 13; i < 19; i = i + 2) {
         matrix[i][10] = 3
         matrix[i][11] = 3
     }
-    for(var i = 14; i < 16; i = i + 1){
+    for (var i = 14; i < 16; i = i + 1) {
         matrix[i][i] = 3
     }
     matrix[13][19] = 3
     matrix[17][19] = 3
-    for(var i = 14; i < 17; i++){
+    for (var i = 14; i < 17; i++) {
         matrix[i][20] = 3
     }
 }
@@ -114,7 +114,7 @@ function setup() {
 function draw() {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
-                   if (matrix[y][x] == 1) {
+            if (matrix[y][x] == 1) {
                 fill('green')
             } else if (matrix[y][x] == 2) {
                 fill('yellow')
@@ -130,7 +130,7 @@ function draw() {
             }
             rect(x * side, y * side, side, side)
         }
-    } 
+    }
     for (var i in grassArr) {
         grassArr[i].mul()
     }
@@ -139,18 +139,18 @@ function draw() {
         grassEaterArr[j].eat()
 
     }
-    if(grassEaterArr == 0 && prArr == 0 && bossArr == 0 && queenArr == 0){
-        theend()    
-        if(grassEaterArr != 0 && queenArr != 0 && grassArr != 0 && bossArr == 0 && prArr == 0){
-            for(let j in grassEaterArr){
+    if (grassEaterArr == 0 && prArr == 0 && bossArr == 0 && queenArr == 0) {
+        theend()
+        if (grassEaterArr != 0 && queenArr != 0 && grassArr != 0 && bossArr == 0 && prArr == 0) {
+            for (let j in grassEaterArr) {
                 grassEaterArr[j].mul()
                 grassEaterArr[j].eat()
             }
-            
+
         }
-    }       
-    if(grassEaterArr != 0 && prArr == 0 && bossArr == 0 && queenArr == 0){
-        for(let i in grassEaterArr){
+    }
+    if (grassEaterArr != 0 && prArr == 0 && bossArr == 0 && queenArr == 0) {
+        for (let i in grassEaterArr) {
             grassEaterArr[i].die()
         }
     }
@@ -160,17 +160,17 @@ function draw() {
     }
     for (let b in bossArr) {
         bossArr[b].eat()
-        if(queenArr != 0 && bossArr != 0 && grassArr !=0 && prArr == 0 && grassEaterArr == 0){
+        if (queenArr != 0 && bossArr != 0 && grassArr != 0 && prArr == 0 && grassEaterArr == 0) {
             bossArr[b].mul()
         }
     }
-    if(queenArr != 0 && grassArr == 0 && bossArr != 0 && prArr == 0 && grassEaterArr == 0){
-        for(var q in queenArr){
+    if (queenArr != 0 && grassArr == 0 && bossArr != 0 && prArr == 0 && grassEaterArr == 0) {
+        for (var q in queenArr) {
             queenArr[q].mul()
             queenArr[q].eat()
         }
-    }else if(queenArr != 0 && bossArr == 0 && grassEaterArr != 0){
-        for(let q in queenArr){
+    } else if (queenArr != 0 && bossArr == 0 && grassEaterArr != 0) {
+        for (let q in queenArr) {
             queenArr[q].die()
         }
     }
@@ -185,12 +185,12 @@ function draw() {
         let y = 0
         grassArr.push(new Grass(x, y))
     }
-    if(grassArr != 0 && queenArr != 0 && bossArr == 0 && prArr == 0 && grassEaterArr == 0){
+    if (grassArr != 0 && queenArr != 0 && bossArr == 0 && prArr == 0 && grassEaterArr == 0) {
         let x = 10
         let y = 10
-        for(var i = 0; i < 3; i++){
-             grassEaterArr.push(new GrassEater(x,y))
-             prArr.push(new Predator(x+5,y+5))
+        for (var i = 0; i < 3; i++) {
+            grassEaterArr.push(new GrassEater(x, y))
+            prArr.push(new Predator(x + 5, y + 5))
         }
 
 
