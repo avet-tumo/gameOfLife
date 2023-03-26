@@ -1,6 +1,6 @@
-class GrassEater extends LivingCreature{
+class GrassEater extends LivingCreature {
     constructor(x, y) {
-        super(x,y)
+        super(x, y)
         this.energy = 14;
         this.multiply = 0
         this.directions = [];
@@ -35,9 +35,9 @@ class GrassEater extends LivingCreature{
             matrix[this.y][this.x] = 0
             this.x = newX
             this.y = newY
-            if(queenArr != 0 && grassEaterArr != 0 && prArr == 0 && grassArr == 0 && bossArr != 0){
+            if (queenArr != 0 && grassEaterArr != 0 && prArr == 0 && grassArr == 0 && bossArr != 0) {
                 this.die()
-            }else if(queenArr != 0 && grassEaterArr != 0 && prArr == 0 && grassArr == 0){
+            } else if (queenArr != 0 && grassEaterArr != 0 && prArr == 0 && grassArr == 0) {
                 this.die()
             }
         }
