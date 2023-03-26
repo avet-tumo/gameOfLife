@@ -4,9 +4,7 @@ module.exports = class Predator extends LivingCreature{
         super(x,y)
         this.multiply = 0
         this.energy = 16
-        this.directions = [
-
-        ]
+        this.directions = []
     }
 
 
