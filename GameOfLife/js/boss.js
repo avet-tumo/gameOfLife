@@ -1,7 +1,7 @@
 let LivingCreature = require('./LivingCreature')
-module.exports = class Boss extends LivingCreature{
+module.exports = class Boss extends LivingCreature {
     constructor(x, y) {
-       super(x,y)
+        super(x, y)
         this.energy = 10
         this.multiply = 0
         this.directions = [
@@ -67,7 +67,7 @@ module.exports = class Boss extends LivingCreature{
     mul() {
         this.multiply++
         var emptyCell = this.chooseCell(0)
-        var newCell = random(emptyCell)
+        var newCell = emptyCell[Math.floor(Math.random()*emptyCell.length)]
         if (newCell && this.multiply >= 15) {
             var newX = newCell[0]
             var newY = newCell[1]
@@ -80,7 +80,7 @@ module.exports = class Boss extends LivingCreature{
     move() {
         this.energy--
         var emptyCells = this.chooseCell(0)
-        var newCell = random(emptyCells)
+        var newCell = emptyCells[Math.floor(Math.random()*emptyCells.length)]
         if (newCell && this.energy >= 0) {
             var newX = newCell[0]
             var newY = newCell[1]
@@ -97,7 +97,7 @@ module.exports = class Boss extends LivingCreature{
     }
     eat() {
         var emptyCells = this.chooseCell(1, 2, 3)
-        var newCell = random(emptyCells)
+        var newCell = emptyCells[Math.floor(Math.random()*emptyCells.length)]
         if (newCell) {
             this.energy++
             var newX = newCell[0]
