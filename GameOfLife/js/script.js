@@ -45,16 +45,18 @@
 // }
 
 // let matrix = matGen(30, 15, 10, 20, 4, 1)
-var side = 30
+
 // var grassArr = []
 // var grassEaterArr = []
 // var prArr = []
 // var bossArr = []
 // var queenArr = []
+
+var side = 27
 const socket = io()
 function setup() {
     frameRate(10)
-    createCanvas(30 * side, 30 * side)
+    createCanvas(27 * side, 27 * side)
     // for (var y = 0; y < matrix.length; y++) {
     //     for (var x = 0; x < matrix[y].length; x++) {
     //         if (matrix[y][x] == 1) {
@@ -91,6 +93,8 @@ function changeColors(matrix) {
                 fill('#034f09')
             } else if (matrix[y][x] == 5) {
                 fill('#e81c8c')
+            } else if (matrix[y][x] == 6) {
+                fill('aqua')
             }
             else {
                 fill('#acacac')
@@ -164,38 +168,7 @@ function changeColors(matrix) {
     // }
 
 }
-function theend() {
-    for (var i = 8; i < 13; i++) {
-        matrix[6][i] = 3
-    }
-    matrix[8][15] = 5
-    for (var i = 6; i < 11; i++) {
-        matrix[i][10] = 3
-        matrix[i][14] = 3
-        matrix[i][16] = 3
-        matrix[i][18] = 3
-    }
-    for (var i = 6; i < 12; i = i + 2) {
-        matrix[i][19] = 3
-        matrix[i][20] = 3
-    }
-    for (var i = 13; i < 18; i++) {
-        matrix[i][9] = 3
-        matrix[i][13] = 3
-        matrix[i][16] = 3
-        matrix[i][18] = 3
-    }
-    for (var i = 13; i < 19; i = i + 2) {
-        matrix[i][10] = 3
-        matrix[i][11] = 3
-    }
-    for (var i = 14; i < 16; i = i + 1) {
-        matrix[i][i] = 3
-    }
-    matrix[13][19] = 3
-    matrix[17][19] = 3
-    for (var i = 14; i < 17; i++) {
-        matrix[i][20] = 3
-    }
-}
+
+
 socket.on("send matrix", changeColors)
+

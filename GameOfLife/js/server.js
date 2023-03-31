@@ -19,7 +19,7 @@ function theend() {
         matrix[i][16] = 3
         matrix[i][18] = 3
     }
-    for (var i = 6; i < 12; i = i + 2) {
+    for (var i = 6; i < 12; i += 2) {
         matrix[i][19] = 3
         matrix[i][20] = 3
     }
@@ -29,11 +29,11 @@ function theend() {
         matrix[i][16] = 3
         matrix[i][18] = 3
     }
-    for (var i = 13; i < 19; i = i + 2) {
+    for (var i = 13; i < 19; i += 2) {
         matrix[i][10] = 3
         matrix[i][11] = 3
     }
-    for (var i = 14; i < 16; i = i + 1) {
+    for (var i = 14; i < 16; i++) {
         matrix[i][i] = 3
     }
     matrix[13][19] = 3
@@ -42,7 +42,7 @@ function theend() {
         matrix[i][20] = 3
     }
 }
-function matGen(matrixSize, grassCount, grEatCount, prCount, boss, queen) {
+function matGen(matrixSize, grassCount, grEatCount, prCount, boss, queen, water) {
     let matrix = []
     for (let i = 0; i < matrixSize; i++) {
         matrix[i] = []
@@ -85,24 +85,32 @@ function matGen(matrixSize, grassCount, grEatCount, prCount, boss, queen) {
             matrix[y][x] = 5
         }
     }
+    for (let i = 0; i < water; i++) {
+        let x = Math.floor(Math.random() * matrixSize)
+        let y = Math.floor(Math.random() * matrixSize)
+        if (matrix[y][x] == 0) {
+            matrix[y][x] = 6
+        }
+    }
     io.emit("send matrix",matrix)
     return matrix
 }
 
 
-matrix = matGen(30, 15, 10, 20, 4, 1)
+matrix = matGen(30, 25, 25, 20, 4, 1, 15)
 side = 30
 grassArr = []
 grassEaterArr = []
 prArr = []
 bossArr = []
 queenArr = []
-
+waterArr = []
 const Grass = require('./grass')
 const GrassEater = require('./grasseater')
 const Boss = require('./boss')
 const Predator = require('./predator')
 const Queen = require('./queen')
+const Water = require('./water')
 function newObject() {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
@@ -124,6 +132,10 @@ function newObject() {
                 var que = new Queen(x, y)
                 queenArr.push(que)
             }
+            else if (matrix[y][x] == 6) {
+                var wt = new Water(x, y)
+                waterArr.push(wt)
+            }
         }
     }
 }
@@ -137,6 +149,11 @@ function gameMove() {
         grassEaterArr[j].mul()
         grassEaterArr[j].eat()
 
+    }
+    for (let w in waterArr) {
+        waterArr[w].mul()
+        waterArr[w].attack()
+        waterArr[w].move()
     }
     if (grassEaterArr == 0 && prArr == 0 && bossArr == 0 && queenArr == 0) {
         theend()
@@ -195,4 +212,4 @@ function gameMove() {
     io.emit("send matrix",matrix)
 
 }
-setInterval(gameMove, 100)
+setInterval(gameMove, 200)
