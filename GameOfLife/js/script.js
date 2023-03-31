@@ -54,6 +54,7 @@
 
 var side = 27
 const socket = io()
+
 function setup() {
     frameRate(10)
     createCanvas(27 * side, 27 * side)

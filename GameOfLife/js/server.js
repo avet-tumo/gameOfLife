@@ -8,7 +8,7 @@ app.get('/', function (req, res) {
 });
 
 server.listen(3000);
-function theend() {
+function theEnd() {
     for (var i = 8; i < 13; i++) {
         matrix[6][i] = 3
     }
@@ -79,8 +79,8 @@ function matGen(matrixSize, grassCount, grEatCount, prCount, boss, queen, water)
         }
     }
     for (let i = 0; i < queen; i++) {
-        let x = 15
-        let y = 15
+        let x = 14
+        let y = 13
         if (matrix[y][x] == 0) {
             matrix[y][x] = 5
         }
@@ -156,7 +156,7 @@ function gameMove() {
         waterArr[w].move()
     }
     if (grassEaterArr == 0 && prArr == 0 && bossArr == 0 && queenArr == 0) {
-        theend()
+        theEnd()
         if (grassEaterArr != 0 && queenArr != 0 && grassArr != 0 && bossArr == 0 && prArr == 0) {
             for (let j in grassEaterArr) {
                 grassEaterArr[j].mul()
