@@ -19,8 +19,8 @@
     <script src="js/predator.js"></script>
     <script src="js/boss.js"></script>
     <script src="js/queen.js"></script> -->
-    <script src="js/script.js"></script>
-
+   
+<button id ="newQueen">Add Queen</button>
 
     <div class="overlay fade-in-bottom">
         <div class="overlay-content">
@@ -52,8 +52,6 @@
         $(this).removeClass("visible"); // remove the visible class after the fade out animation
       });
     });
-
-   
   }); 
   var elem = document.documentElement;
     function openFullscreen() {
@@ -65,5 +63,31 @@
         elem.msRequestFullscreen();
       }
     }
+
+    
 </script>
+
+<table class="table">
+  <tr>
+    <th>Grass</th><br>
+    <th>GrassEater</th><br>
+    <th>Predator</th><br>
+    <th>Boss</th><br>
+    <th>Queen</th><br>
+    <th>Water</th><br>
+  </tr>
+  <tr>
+    <td id="grass"></td>
+    <td id="grassEater"></td>
+    <td id="predator"></td>
+    <td id="boss"></td>
+    <td id="queen"></td>
+    <td id="water"></td>
+  </tr>
+
+</table>
+
+<script src="js/script.js"></script>
+  
+</body>
 </html>

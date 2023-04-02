@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
+var fs = require('fs')
 app.use(express.static("."));
 app.get('/', function (req, res) {
     res.redirect('index.html');
@@ -92,10 +93,9 @@ function matGen(matrixSize, grassCount, grEatCount, prCount, boss, queen, water)
             matrix[y][x] = 6
         }
     }
-    io.emit("send matrix",matrix)
+    io.emit("send matrix", matrix)
     return matrix
 }
-
 
 matrix = matGen(30, 25, 25, 20, 4, 1, 15)
 side = 30
@@ -140,6 +140,22 @@ function newObject() {
     }
 }
 newObject()
+function addQueen() {
+    let x = Math.floor(Math.random() * matrix[0].length)
+    let y = Math.floor(Math.random() * matrix.length)
+    matrix[y][x] = 5
+    var que = new Queen(x, y)
+    queenArr.push(que)
+    for (var i in grassArr) {
+        if (x == grassArr[i].x && y == grassArr[i].y) {
+            grassArr.splice(i, 1);
+            break;
+        }
+    }
+
+    io.emit("send matrix", matrix)
+
+}
 
 function gameMove() {
     for (var i in grassArr) {
@@ -209,7 +225,26 @@ function gameMove() {
             prArr.push(new Predator(x + 5, y + 5))
         }
     }
-    io.emit("send matrix",matrix)
-
+    io.emit("send matrix", matrix)
 }
 setInterval(gameMove, 200)
+
+io.on('connection', function (socket) {
+    socket.on("send btn", function () {
+        addQueen()
+    });
+});
+setInterval(function () {
+    counts = {
+       grass: grassArr.length,
+        grassEater:  grassEaterArr.length,
+        predator:  prArr.length,
+        boss: bossArr.length,
+        queen:  queenArr.length,
+        water:  waterArr.length 
+    }
+    
+    fs.writeFile("statistics.json", JSON.stringify(counts), function () {
+        io.emit("send datas", counts)
+    })
+}, 200);

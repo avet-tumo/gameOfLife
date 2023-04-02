@@ -327,6 +327,19 @@ canvas {
 canvas:hover {
   transform: scale(1.03);
 }
+#newQueen {
+  width: 220px;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 9999;
+  border-radius: 10px;
+  position: fixed;
+}
 .glow-on-hover {
   width: 220px;
   height: 50px;
