@@ -1,15 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
-html{
-    scroll-behavior: smooth;
+
+html {
+  scroll-behavior: smooth;
 }
-body{
-	font-family: 'Montserrat', sans-serif;
-	font-weight: 300;
-	font-size: 15px;
-	line-height: 1.7;
-	color: #ececee;
-	background-color: #1f2029;
-	overflow: hidden;
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #ececee;
+  background-color: #1f2029;
+  overflow: hidden;
   background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
   background-position: center;
   background-repeat: repeat;
@@ -17,7 +19,64 @@ body{
   height: 100vh;
   width: 100%;
 }
-.section-center{
+
+#time-counter {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: black;
+  color: white;
+  border-top-left-radius: 10px;
+  padding: 5px 10px;
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+#time {
+  font-weight: bold;
+}
+
+ul {
+  position: absolute;
+  top: 20%;
+  left: 1%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  z-index: 9999;
+  transition: transform 0.3s ease-in-out;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #ddd;
+
+}
+
+ul.slide-to-right {
+  overflow: hidden;
+}
+
+ul.slide-to-right li {
+  transition: transform 0.3s ease-in-out;
+}
+
+ul.slide-to-right:hover {
+  transform: translateX(10%);
+}
+
+
+li:last-child {
+  border-bottom: none;
+}
+
+.section-center {
   position: absolute;
   top: 50%;
   left: 0;
@@ -32,14 +91,15 @@ body{
 
 
 [type="checkbox"]:checked,
-[type="checkbox"]:not(:checked){
+[type="checkbox"]:not(:checked) {
   position: absolute;
   left: -9999px;
 }
-.menu-icon:checked + label,
-.menu-icon:not(:checked) + label{
-    animation: slideInDown;
-    animation-duration: 2s;
+
+.menu-icon:checked+label,
+.menu-icon:not(:checked)+label {
+  animation: slideInDown;
+  animation-duration: 2s;
   position: fixed;
   top: 63px;
   right: 75px;
@@ -51,8 +111,9 @@ body{
   cursor: pointer;
   z-index: 9999;
 }
-.menu-icon:checked + label:before,
-.menu-icon:not(:checked) + label:before{
+
+.menu-icon:checked+label:before,
+.menu-icon:not(:checked)+label:before {
   position: absolute;
   content: '';
   display: block;
@@ -63,14 +124,15 @@ body{
   left: 0;
   border-top: 2px solid #ececee;
   border-bottom: 2px solid #ececee;
-  transition: border-width 100ms 1500ms ease, 
-              top 100ms 1600ms cubic-bezier(0.23, 1, 0.32, 1),
-              height 100ms 1600ms cubic-bezier(0.23, 1, 0.32, 1), 
-              background-color 200ms ease,
-              transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: border-width 100ms 1500ms ease,
+    top 100ms 1600ms cubic-bezier(0.23, 1, 0.32, 1),
+    height 100ms 1600ms cubic-bezier(0.23, 1, 0.32, 1),
+    background-color 200ms ease,
+    transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
 }
-.menu-icon:checked + label:after,
-.menu-icon:not(:checked) + label:after{
+
+.menu-icon:checked+label:after,
+.menu-icon:not(:checked)+label:after {
   position: absolute;
   content: '';
   display: block;
@@ -81,35 +143,37 @@ body{
   right: 4px;
   background-color: #ececee;
   margin-top: -1px;
-  transition: width 100ms 1750ms ease, 
-              right 100ms 1750ms ease,
-              margin-top 100ms ease, 
-              transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: width 100ms 1750ms ease,
+    right 100ms 1750ms ease,
+    margin-top 100ms ease,
+    transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
 }
-.menu-icon:checked + label:before{
+
+.menu-icon:checked+label:before {
   top: 10px;
   transform: rotate(45deg);
   height: 2px;
   background-color: #ececee;
   border-width: 0;
-  transition: border-width 100ms 340ms ease, 
-              top 100ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
-              height 100ms 300ms cubic-bezier(0.23, 1, 0.32, 1), 
-              background-color 200ms 500ms ease,
-              transform 200ms 1700ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: border-width 100ms 340ms ease,
+    top 100ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
+    height 100ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
+    background-color 200ms 500ms ease,
+    transform 200ms 1700ms cubic-bezier(0.23, 1, 0.32, 1);
 }
-.menu-icon:checked + label:after{
+
+.menu-icon:checked+label:after {
   width: 30px;
   margin-top: 0;
   right: 0;
   transform: rotate(-45deg);
   transition: width 100ms ease,
-              right 100ms ease,  
-              margin-top 100ms 500ms ease, 
-              transform 200ms 1700ms cubic-bezier(0.23, 1, 0.32, 1);
+    right 100ms ease,
+    margin-top 100ms 500ms ease,
+    transform 200ms 1700ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.nav{
+.nav {
   position: fixed;
   top: 33px;
   right: 50px;
@@ -120,40 +184,63 @@ body{
   margin: 0;
   z-index: 9;
   overflow: hidden;
-  box-shadow: 0 8px 30px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.3);
   background-color: #353746;
   animation: border-transform 7s linear infinite;
-  transition: top 350ms 1100ms cubic-bezier(0.23, 1, 0.32, 1),  
-              right 350ms 1100ms cubic-bezier(0.23, 1, 0.32, 1),
-              transform 250ms 1100ms ease,
-              width 650ms 400ms cubic-bezier(0.23, 1, 0.32, 1),
-              height 650ms 400ms cubic-bezier(0.23, 1, 0.32, 1);
-}
-@keyframes border-transform{
-    0%,100% { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; } 
-  14% { border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%; } 
-  28% { border-radius: 54% 46% 38% 62% / 49% 70% 30% 51%; } 
-  42% { border-radius: 61% 39% 55% 45% / 61% 38% 62% 39%; } 
-  56% { border-radius: 61% 39% 67% 33% / 70% 50% 50% 30%; } 
-  70% { border-radius: 50% 50% 34% 66% / 56% 68% 32% 44%; } 
-  84% { border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%; } 
+  transition: top 350ms 1100ms cubic-bezier(0.23, 1, 0.32, 1),
+    right 350ms 1100ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 250ms 1100ms ease,
+    width 650ms 400ms cubic-bezier(0.23, 1, 0.32, 1),
+    height 650ms 400ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.menu-icon:checked ~ .nav {
+@keyframes border-transform {
+
+  0%,
+  100% {
+    border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+  }
+
+  14% {
+    border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%;
+  }
+
+  28% {
+    border-radius: 54% 46% 38% 62% / 49% 70% 30% 51%;
+  }
+
+  42% {
+    border-radius: 61% 39% 55% 45% / 61% 38% 62% 39%;
+  }
+
+  56% {
+    border-radius: 61% 39% 67% 33% / 70% 50% 50% 30%;
+  }
+
+  70% {
+    border-radius: 50% 50% 34% 66% / 56% 68% 32% 44%;
+  }
+
+  84% {
+    border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%;
+  }
+}
+
+.menu-icon:checked~.nav {
   animation-play-state: paused;
   top: 50%;
   right: 50%;
   transform: translate(50%, -50%);
   width: 200%;
   height: 200%;
-  transition: top 350ms 700ms cubic-bezier(0.23, 1, 0.32, 1),  
-              right 350ms 700ms cubic-bezier(0.23, 1, 0.32, 1),
-              transform 250ms 700ms ease,
-              width 750ms 1000ms cubic-bezier(0.23, 1, 0.32, 1),
-              height 750ms 1000ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: top 350ms 700ms cubic-bezier(0.23, 1, 0.32, 1),
+    right 350ms 700ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 250ms 700ms ease,
+    width 750ms 1000ms cubic-bezier(0.23, 1, 0.32, 1),
+    height 750ms 1000ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.nav ul{
+.nav ul {
   position: absolute;
   top: 50%;
   left: 0;
@@ -166,7 +253,8 @@ body{
   transform: translateY(-50%);
   list-style: none;
 }
-.nav ul li{
+
+.nav ul li {
   position: relative;
   display: block;
   width: 100%;
@@ -180,22 +268,28 @@ body{
   transform: translateY(30px);
   transition: all 250ms linear;
 }
-.nav ul li:nth-child(1){
+
+.nav ul li:nth-child(1) {
   transition-delay: 200ms;
 }
-.nav ul li:nth-child(2){
+
+.nav ul li:nth-child(2) {
   transition-delay: 150ms;
 }
-.nav ul li:nth-child(3){
+
+.nav ul li:nth-child(3) {
   transition-delay: 100ms;
 }
-.nav ul li:nth-child(4){
+
+.nav ul li:nth-child(4) {
   transition-delay: 50ms;
 }
-.nav ul li:nth-child(5){
-    transition-delay: 20ms;
-  }
-.nav ul li a{
+
+.nav ul li:nth-child(5) {
+  transition-delay: 20ms;
+}
+
+.nav ul li a {
   font-family: 'Montserrat', sans-serif;
   font-size: 9vh;
   text-transform: uppercase;
@@ -206,11 +300,13 @@ body{
   color: #ececee;
   transition: all 250ms linear;
 }
-.nav ul li a:hover{
+
+.nav ul li a:hover {
   text-decoration: none;
   color: #ffeba7;
 }
-.nav ul li a:after{
+
+.nav ul li a:after {
   display: block;
   position: absolute;
   top: 50%;
@@ -223,123 +319,259 @@ body{
   opacity: 0.8;
   transition: width 250ms linear;
 }
-.nav ul li a:hover:after{
+
+.nav ul li a:hover:after {
   width: 100%;
 }
 
 
-.menu-icon:checked ~ .nav  ul li {
+.menu-icon:checked~.nav ul li {
   pointer-events: auto;
   visibility: visible;
   opacity: 1;
   transform: translateY(0);
   transition: opacity 350ms ease,
-              transform 250ms ease;
+    transform 250ms ease;
 }
-.menu-icon:checked ~ .nav ul li:nth-child(1){
+
+.menu-icon:checked~.nav ul li:nth-child(1) {
   transition-delay: 1400ms;
 }
-.menu-icon:checked ~ .nav ul li:nth-child(2){
+
+.menu-icon:checked~.nav ul li:nth-child(2) {
   transition-delay: 1480ms;
 }
-.menu-icon:checked ~ .nav ul li:nth-child(3){
+
+.menu-icon:checked~.nav ul li:nth-child(3) {
   transition-delay: 1560ms;
 }
-.menu-icon:checked ~ .nav ul li:nth-child(4){
+
+.menu-icon:checked~.nav ul li:nth-child(4) {
   transition-delay: 1640ms;
 }
-.menu-icon:checked ~ .nav ul li:nth-child(5){
-    transition-delay: 1780ms;
-  }
+
+.menu-icon:checked~.nav ul li:nth-child(5) {
+  transition-delay: 1780ms;
+}
 
 
 
 .logo {
-	position: absolute;
-	top: 60px;
-	left: 50px;
-	display: block;
-	z-index: 11;
-	transition: all 250ms linear;
+  position: absolute;
+  top: 60px;
+  left: 50px;
+  display: block;
+  z-index: 11;
+  transition: all 250ms linear;
 }
+
 .logo img {
-	height: 26px;
-	width: auto;
-	display: block;
+  height: 26px;
+  width: auto;
+  display: block;
 }
 
 
 
 @media screen and (max-width: 991px) {
-  .menu-icon:checked + label,
-  .menu-icon:not(:checked) + label{
+
+  .menu-icon:checked+label,
+  .menu-icon:not(:checked)+label {
     right: 55px;
   }
+
   .logo {
     left: 30px;
   }
-  .nav{
+
+  .nav {
     right: 30px;
   }
-  .nav ul li a{
+
+  .nav ul li a {
     font-size: 8vh;
   }
 }
 
 @keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
+  0% {
+    background-position: 0% 50%;
+  }
 
-    50% {
-        background-position: 100% 50%;
-    }
+  50% {
+    background-position: 100% 50%;
+  }
 
-    100% {
-        background-position: 0% 50%;
-    }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Koulen&family=Macondo&display=swap');
 
 .h1c {
-    animation: jackInTheBox;
-    animation-duration: 2s;
-    color: coral;
-    text-align: center;
-    font-family: 'Macondo', cursive;
-    margin-top:30px;
+  animation: jackInTheBox;
+  animation-duration: 2s;
+  color: coral;
+  text-align: center;
+  font-family: 'Macondo', cursive;
+  margin-top: 30px;
 }
 
 canvas {
-    border-radius: 60px;
-    padding: 20px;
-    width: 200px;
-    height: 150px;
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 40px;
-    transition: transform 0.5s;
-    animation: backInDown;
-    animation-duration: 1s;
+  border-radius: 60px;
+  padding: 20px;
+  width: 200px;
+  height: 150px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 40px;
+  transition: transform 0.5s;
+  animation: backInDown;
+  animation-duration: 1s;
 }
+
 canvas:hover {
   transform: scale(1.03);
 }
-#newQueen {
-  width: 220px;
-  height: 50px;
-  border: none;
-  outline: none;
-  color: #fff;
-  background: #111;
-  cursor: pointer;
-  position: relative;
-  z-index: 9999;
-  border-radius: 10px;
-  position: fixed;
+
+body {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
 }
+
+.btn-group {
+  display: inline-flex;
+  position: absolute;
+  top: 3%;
+  z-index: 9999;
+  transition: transform 0.5s;
+  animation: backInDown;
+  animation-duration: 1s;
+
+}
+
+.btn-group #newGrass {
+  background-image: linear-gradient(45deg, #0f900f, #00cc00, #009900, #006600);
+
+}
+
+.btn-group #newEater {
+  background-image: linear-gradient(45deg, #f5c100, #af941c, #ddc01b, #7a6e21);
+
+}
+
+.btn-group #newPredator {
+  background-image: linear-gradient(45deg, #ff8080, #ff3333, #cc0000, #990000);
+
+}
+
+.btn-group #newBoss {
+  background-image: linear-gradient(45deg, #333333, #666666, #232323, #000000);
+}
+.btn-group #newWater {
+  background-image: linear-gradient(45deg, #0b3d91, #0b5394, #0b6f99, #0b8c9d, #0ba9a2);
+}
+.btn-group #newQueen{
+  background-image: linear-gradient(45deg, #8B008B, #9400D3, #4B0082);
+
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.btn-group:before {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 12px;
+  right: 0;
+  bottom: -12px;
+  left: 0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.btn-group button {
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  color: white;
+  font-weight: bold;
+  border: 0;
+  border-bottom: 1px solid #000;
+  outline: none;
+  position: relative;
+  top: 0;
+  padding: 12px 16px;
+  margin: 0 -1px 0 -1px;
+  z-index: 10;
+  transition: top 140ms linear;
+  cursor: pointer;
+}
+
+.btn-group button:first-child {
+  border-radius: 8px 0 0 8px;
+  margin: 0;
+}
+
+.btn-group button:last-child {
+  border-radius: 0 8px 8px 0;
+  margin: 0;
+}
+
+.btn-group button:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 1px;
+  right: 1px;
+  bottom: -12px;
+  z-index: 5;
+  pointer-events: none;
+  cursor: pointer;
+  box-shadow: 0 0 0 1px #000;
+  transition: bottom 140ms linear;
+}
+
+.btn-group button:first-child:before {
+  border-radius: 8px 0 0 8px;
+}
+
+.btn-group button:last-child:before {
+  border-radius: 0 8px 8px 0;
+}
+
+.btn-group button:hover {
+  top: 4px;
+}
+
+.btn-group button:hover:before {
+  bottom: -8px;
+}
+
+.btn-group button:active {
+  top: 12px;
+}
+
+.btn-group button:active:before {
+  bottom: 0px;
+}
+
+
 .glow-on-hover {
   width: 220px;
   height: 50px;
@@ -357,22 +589,25 @@ canvas:hover {
   transform: translate(-50%, -50%);
   animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
+
 @keyframes fade-in-bottom {
   from {
-      transform: translateY(-100%);
-      opacity: 0;
+    transform: translateY(-100%);
+    opacity: 0;
   }
+
   to {
-      transform: translateY(0);
-      opacity: 1;
+    transform: translateY(0);
+    opacity: 1;
   }
 }
+
 .glow-on-hover:before {
   content: '';
   background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
   position: absolute;
   top: -2px;
-  left:-2px;
+  left: -2px;
   background-size: 400%;
   z-index: -1;
   filter: blur(5px);
@@ -409,10 +644,19 @@ canvas:hover {
 }
 
 @keyframes glowing {
-  0% { background-position: 0 0; }
-  50% { background-position: 400% 0; }
-  100% { background-position: 0 0; }
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
 }
+
 .overlay {
   position: fixed;
   top: 0;
@@ -424,8 +668,8 @@ canvas:hover {
   justify-content: center;
   align-items: center;
   z-index: 999;
-  opacity: 0; 
-  transition: opacity 0.5s ease-in-out; 
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .overlay.visible {
@@ -439,6 +683,7 @@ canvas:hover {
   transform: translate(-50%, -50%);
   text-align: center;
 }
+
 .close-btn {
   background-color: #4CAF50;
   border: none;

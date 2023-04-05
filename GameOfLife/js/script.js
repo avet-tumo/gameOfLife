@@ -30,17 +30,50 @@ function changeColors(matrix) {
 
 }
 socket.on("send matrix", changeColors)
+let newGrass = document.getElementById('newGrass')
+newGrass.addEventListener("click",function(){
+    socket.emit("send btn",true)
+})
+let newEater = document.getElementById('newEater')
+newEater.addEventListener("click",function(){
+    socket.emit("send btn",true)
+})
+let newPredator = document.getElementById('newPredator')
+newPredator.addEventListener("click",function(){
+    socket.emit("send btn",true)
+})
+let newBoss = document.getElementById('newBoss')
+newBoss.addEventListener("click",function(){
+    socket.emit("send btn",true)
+})
+let newWater = document.getElementById('newWater')
+newWater.addEventListener("click",function(){
+    socket.emit("send btn",true)
+})
 let newQueen = document.getElementById('newQueen')
-newQueen.addEventListener("click",function(){
+newWater.addEventListener("click",function(){
     socket.emit("send btn",true)
 })
 socket.on ("send datas", function(counts){
     
-    document.getElementById("grass").innerHTML = counts.grass;
-    document.getElementById("grassEater").innerHTML = counts.grassEater;
-    document.getElementById("predator").innerHTML = counts.predator;
-    document.getElementById("boss").innerHTML = counts.boss;
-    document.getElementById("queen").innerHTML = counts.queen;
-    document.getElementById("water").innerHTML = counts.water;
+    document.getElementById("grass").innerHTML = 'Grass: ' + counts.grass;
+    document.getElementById("grassEater").innerHTML = 'Grass Eaters: ' + counts.grassEater;
+    document.getElementById("predator").innerHTML = 'Predators: ' + counts.predator;
+    document.getElementById("boss").innerHTML = 'Bosses: ' + counts.boss;
+    document.getElementById("queen").innerHTML = 'Queen: ' + counts.queen;
+    document.getElementById("water").innerHTML = 'Water: ' + counts.water;
 
   })
+  const startTime = Date.now();
+const timeCounter = document.getElementById('time');
+
+setInterval(() => {
+  const elapsedTime = new Date(Date.now() - startTime);
+  const minutes = elapsedTime.getMinutes();
+  const seconds = elapsedTime.getSeconds().toString().padStart(2, '0');
+  const time = `${minutes}:${seconds}`;
+
+  timeCounter.innerText = time;
+  
+  socket.emit('elapsedTime', time);
+}, 1000);

@@ -140,22 +140,61 @@ function newObject() {
     }
 }
 newObject()
-function addQueen() {
-    let x = Math.floor(Math.random() * matrix[0].length)
-    let y = Math.floor(Math.random() * matrix.length)
-    matrix[y][x] = 5
-    var que = new Queen(x, y)
-    queenArr.push(que)
-    for (var i in grassArr) {
-        if (x == grassArr[i].x && y == grassArr[i].y) {
-            grassArr.splice(i, 1);
-            break;
-        }
+function addGrass() {
+    let x = Math.floor(Math.random() * matrix[0].length);
+    let y = Math.floor(Math.random() * matrix.length);
+    if (matrix[y][x] === 0) { // Check if the position is unoccupied
+        matrix[y][x] = 1;
+        var gr = new Grass(x, y);
+        grassArr.push(gr);
+        io.emit("send matrix", matrix);
     }
-
-    io.emit("send matrix", matrix)
-
 }
+
+function addEater() {
+    let x = Math.floor(Math.random() * matrix[0].length);
+    let y = Math.floor(Math.random() * matrix.length);
+    if (matrix[y][x] === 0) { // Check if the position is unoccupied
+        matrix[y][x] = 2;
+        var grEat = new GrassEater(x, y);
+        grassEaterArr.push(grEat);
+        io.emit("send matrix", matrix);
+    }
+}
+
+function addPredator() {
+    let x = Math.floor(Math.random() * matrix[0].length);
+    let y = Math.floor(Math.random() * matrix.length);
+    if (matrix[y][x] === 0) { // Check if the position is unoccupied
+        matrix[y][x] = 3;
+        var pret = new Predator(x, y);
+        prArr.push(pret);
+        io.emit("send matrix", matrix);
+    }
+}
+
+function addBoss() {
+    let x = Math.floor(Math.random() * matrix[0].length);
+    let y = Math.floor(Math.random() * matrix.length);
+    if (matrix[y][x] === 0) { // Check if the position is unoccupied
+        matrix[y][x] = 4;
+        var bs = new Boss(x, y);
+        bossArr.push(bs);
+        io.emit("send matrix", matrix);
+    }
+}
+
+function addWater() {
+    let x = Math.floor(Math.random() * matrix[0].length);
+    let y = Math.floor(Math.random() * matrix.length);
+    if (matrix[y][x] === 0) { // Check if the position is unoccupied
+        matrix[y][x] = 6;
+        var wt = new Water(x, y);
+        waterArr.push(wt);
+        io.emit("send matrix", matrix);
+    }
+}
+
 
 function gameMove() {
     for (var i in grassArr) {
@@ -171,59 +210,21 @@ function gameMove() {
         waterArr[w].attack()
         waterArr[w].move()
     }
-    if (grassEaterArr == 0 && prArr == 0 && bossArr == 0 && queenArr == 0) {
-        theEnd()
-        if (grassEaterArr != 0 && queenArr != 0 && grassArr != 0 && bossArr == 0 && prArr == 0) {
-            for (let j in grassEaterArr) {
-                grassEaterArr[j].mul()
-                grassEaterArr[j].eat()
-            }
-
-        }
-    }
-    if (grassEaterArr != 0 && prArr == 0 && bossArr == 0 && queenArr == 0) {
-        for (let i in grassEaterArr) {
-            grassEaterArr[i].die()
-        }
-    }
     for (let p in prArr) {
         prArr[p].mul()
         prArr[p].eat()
     }
     for (let b in bossArr) {
         bossArr[b].eat()
-        if (queenArr != 0 && bossArr != 0 && grassArr != 0 && prArr == 0 && grassEaterArr == 0) {
+        if (queenArr < 2) {
             bossArr[b].mul()
         }
     }
-    if (queenArr != 0 && grassArr == 0 && bossArr != 0 && prArr == 0 && grassEaterArr == 0) {
-        for (var q in queenArr) {
+    for (var q in queenArr) {
+        if(bossArr != 0){
             queenArr[q].mul()
-            queenArr[q].eat()
         }
-    } else if (queenArr != 0 && bossArr == 0 && grassEaterArr != 0) {
-        for (let q in queenArr) {
-            queenArr[q].die()
-        }
-    }
-    if (grassArr == 0 && grassEaterArr == 0 && bossArr == 0) {
-        var x = 0
-        var y = 0
-        matrix[y][x] = 5
-        queenArr.push(new Queen(x, y))
-    }
-    if (matrix[0][0] == 5 && bossArr == 0 && grassEaterArr == 0) {
-        let x = 0
-        let y = 0
-        grassArr.push(new Grass(x, y))
-    }
-    if (grassArr != 0 && queenArr != 0 && bossArr == 0 && prArr == 0 && grassEaterArr == 0) {
-        let x = 10
-        let y = 10
-        for (var i = 0; i < 3; i++) {
-            grassEaterArr.push(new GrassEater(x, y))
-            prArr.push(new Predator(x + 5, y + 5))
-        }
+        queenArr[q].eat()
     }
     io.emit("send matrix", matrix)
 }
@@ -231,20 +232,46 @@ setInterval(gameMove, 200)
 
 io.on('connection', function (socket) {
     socket.on("send btn", function () {
-        addQueen()
+        addGrass()
+    });
+});
+io.on('connection', function (socket) {
+    socket.on("send btn", function () {
+        addEater()
+    });
+});
+io.on('connection', function (socket) {
+    socket.on("send btn", function () {
+        addPredator()
+    });
+});
+io.on('connection', function (socket) {
+    socket.on("send btn", function () {
+        addBoss()
+    });
+});
+io.on('connection', function (socket) {
+    socket.on("send btn", function () {
+        addWater()
     });
 });
 setInterval(function () {
     counts = {
-       grass: grassArr.length,
-        grassEater:  grassEaterArr.length,
-        predator:  prArr.length,
+        grass: grassArr.length,
+        grassEater: grassEaterArr.length,
+        predator: prArr.length,
         boss: bossArr.length,
-        queen:  queenArr.length,
-        water:  waterArr.length 
+        queen: queenArr.length,
+        water: waterArr.length
     }
-    
+
     fs.writeFile("statistics.json", JSON.stringify(counts), function () {
         io.emit("send datas", counts)
     })
 }, 200);
+io.on('connection', (socket) => {
+    console.log('New client connected');
+    socket.on('elapsedTime', (time) => {
+        io.emit('elapsedTime', time);
+    });
+});

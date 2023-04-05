@@ -19,8 +19,18 @@
     <script src="js/predator.js"></script>
     <script src="js/boss.js"></script>
     <script src="js/queen.js"></script> -->
-   
-<button id ="newQueen">Add Queen</button>
+    <div id="time-counter">Time spent on page: <span id="time">0:00</span></div>
+
+    <div class="btn-group">
+      <button id="newGrass">Add Grass</button>
+      <button id="newEater">Add Grass Eater</button>
+      <button id="newPredator">Add Predator</button>
+      <button id="newBoss">Add Boss</button>
+      <button id="newWater">Add Water</button>
+      <button id="newQueen">Add Queen</button>
+    </div>
+    
+    
 
     <div class="overlay fade-in-bottom">
         <div class="overlay-content">
@@ -67,25 +77,15 @@
     
 </script>
 
-<table class="table">
-  <tr>
-    <th>Grass</th><br>
-    <th>GrassEater</th><br>
-    <th>Predator</th><br>
-    <th>Boss</th><br>
-    <th>Queen</th><br>
-    <th>Water</th><br>
-  </tr>
-  <tr>
-    <td id="grass"></td>
-    <td id="grassEater"></td>
-    <td id="predator"></td>
-    <td id="boss"></td>
-    <td id="queen"></td>
-    <td id="water"></td>
-  </tr>
+  <ul class="slide-to-right">
+    <li id="grass"></li>
+    <li id="grassEater"></li>
+    <li id="predator"></li>
+    <li id="boss"></li>
+    <li id="queen"></li>
+    <li id="water"></li>
+  </ul>
 
-</table>
 
 <script src="js/script.js"></script>
   
