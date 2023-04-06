@@ -28,38 +28,38 @@
       <button id="newBoss">Add Boss</button>
       <button id="newWater">Add Water</button>
       <button id="newQueen">Add Queen</button>
+      <button id="cleanAll">Clean All</button>
     </div>
-    
-    
+    <audio id="audio">
+      <source src="audio/btn.mp3" type="audio/mp3">
+    </audio>
+    <div class="weather">
+      <button style="--clr:#0acc48" id="spring"><span>Spring</span><i></i></button>
+      <button style="--clr:#3ff00e" id="summer"><span>Summer</span><i></i></button>
+  <button style="--clr:#c4a412" id="autumn"><span>Autumn</span><i></i></button>
+  <button style="--clr:#027bc2" id="winter"><span>Winter</span><i></i></button>
+    </div>
 
     <div class="overlay fade-in-bottom">
         <div class="overlay-content">
           <h1>Welcome to Game Of Life</h1>
           <p>Recommended to enable full-screen mode!</p>
+          <p class="volume">PLEASE TURN ON THE VOLUME FOR BETTER EXPERIENCE</p>
           <div class="button-container">
             <button class="close-btn">Close</button>
           </div>
         </div>
       </div>
     
-
-    <input class="menu-icon" type="checkbox" id="menu-icon" name="menu-icon" />
-    <label for="menu-icon"></label>
-    <nav class="nav">
-        <ul class="pt-5">
-            <li><a href="index2.html">Game Info</a></li>
-            <li><a href="https://classroom.google.com/u/1/c/NTExMTU1MTMzODcx">classroom</a></li>
-        </ul>
-    </nav>
     <button onclick="openFullscreen();" class="glow-on-hover" type="button">Open Page in Fullscreen Mode</button>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   $(document).ready(function() {
-    $(".overlay").fadeTo(300, 1); // fade in the overlay with opacity 1
+    $(".overlay").fadeTo(300, 1); 
 
     $(".close-btn").click(function() {
-      $(".overlay").fadeTo(50, 0, function() { // fade out the overlay with opacity 0
-        $(this).removeClass("visible"); // remove the visible class after the fade out animation
+      $(".overlay").fadeTo(50, 0, function() { 
+        $(this).removeClass("visible"); 
       });
     });
   }); 
@@ -67,9 +67,9 @@
     function openFullscreen() {
       if (elem.requestFullscreen) {
         elem.requestFullscreen();
-      } else if (elem.webkitRequestFullscreen) { /* Safari */
+      } else if (elem.webkitRequestFullscreen) { 
         elem.webkitRequestFullscreen();
-      } else if (elem.msRequestFullscreen) { /* IE11 */
+      } else if (elem.msRequestFullscreen) {
         elem.msRequestFullscreen();
       }
     }
