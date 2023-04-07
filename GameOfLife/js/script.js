@@ -136,7 +136,21 @@ socket.on ("send datas", function(counts){
     document.getElementById("boss").innerHTML = 'Bosses: ' + counts.boss;
     document.getElementById("queen").innerHTML = 'Queen: ' + counts.queen;
     document.getElementById("water").innerHTML = 'Water: ' + counts.water;
+    let maxCount = Math.max(counts.grass, counts.grassEater, counts.predator, counts.boss, counts.queen, counts.water);
 
+    if (counts.grass === maxCount) {
+      document.getElementById("leader").innerHTML = 'Grass is the leader!';
+    } else if (counts.grassEater === maxCount) {
+      document.getElementById("leader").innerHTML = 'Grass Eaters are the leader!';
+    } else if (counts.predator === maxCount) {
+      document.getElementById("leader").innerHTML = 'Predators are the leader!';
+    } else if (counts.boss === maxCount) {
+      document.getElementById("leader").innerHTML = 'Bosses are the leader!';
+    } else if (counts.queen === maxCount) {
+      document.getElementById("leader").innerHTML = 'The Queen is the leader!';
+    } else if (counts.water === maxCount) {
+      document.getElementById("leader").innerHTML = 'Water is the leader!';
+    }
   })
   const startTime = Date.now();
 const timeCounter = document.getElementById('time');

@@ -2,98 +2,102 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game of Life</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game of Life</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <!-- <script src="js/LivingCreature.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- <script src="js/LivingCreature.js"></script>
     <script src="js/grass.js"></script>
     <script src="js/grasseater.js"></script>
     <script src="js/predator.js"></script>
     <script src="js/boss.js"></script>
     <script src="js/queen.js"></script> -->
-    <div id="time-counter">Time spent on page: <span id="time">0:00</span></div>
+  <div id="time-counter">Time spent on page: <span id="time">0:00</span></div>
 
-    <div class="btn-group">
-      <button id="newGrass">Add Grass</button>
-      <button id="newEater">Add Grass Eater</button>
-      <button id="newPredator">Add Predator</button>
-      <button id="newBoss">Add Boss</button>
-      <button id="newWater">Add Water</button>
-      <button id="newQueen">Add Queen</button>
-      <button id="cleanAll">Clean All</button>
-    </div>
-    <audio id="audio">
-      <source src="audio/btn.mp3" type="audio/mp3">
-    </audio>
-    <div class="weather">
-      <button style="--clr:#0acc48" id="spring"><span>Spring</span><i></i></button>
-      <button style="--clr:#3ff00e" id="summer"><span>Summer</span><i></i></button>
-  <button style="--clr:#c4a412" id="autumn"><span>Autumn</span><i></i></button>
-  <button style="--clr:#027bc2" id="winter"><span>Winter</span><i></i></button>
-  <button style="--clr:#a3c4b3" id="muteButton" onclick="toggleAudio()"><span>Mute</span><i></i></button>
-    </div>
+  <div class="btn-group">
+    <button id="newGrass">Add Grass</button>
+    <button id="newEater">Add Grass Eater</button>
+    <button id="newPredator">Add Predator</button>
+    <button id="newBoss">Add Boss</button>
+    <button id="newWater">Add Water</button>
+    <button id="newQueen">Add Queen</button>
+    <button id="cleanAll">Clean All</button>
+  </div>
+  <audio id="audio">
+    <source src="audio/btn.mp3" type="audio/mp3">
+  </audio>
+  <div class="weather">
+    <button style="--clr:#0acc48" id="spring"><span>Spring</span><i></i></button>
+    <button style="--clr:#3ff00e" id="summer"><span>Summer</span><i></i></button>
+    <button style="--clr:#c4a412" id="autumn"><span>Autumn</span><i></i></button>
+    <button style="--clr:#027bc2" id="winter"><span>Winter</span><i></i></button>
+    <button style="--clr:#a3c4b3" id="muteButton" onclick="toggleAudio()"><span>Mute</span><i></i></button>
+  </div>
 
-    <div class="overlay fade-in-bottom">
-        <div class="overlay-content">
-          <h1 class="welcome">Welcome to Game Of Life</h1>
-          <p class="fp">Recommended to enable full-screen mode!</p>
-          <p class="volume">PLEASE TURN ON THE VOLUME FOR BETTER EXPERIENCE</p>
-         
+  <div class="overlay fade-in-bottom">
+    <div class="overlay-content">
+      <h1 class="welcome">Welcome to Game Of Life</h1>
+      <p class="fp">Recommended to enable full-screen mode!</p>
+      <p class="volume">PLEASE TURN ON THE VOLUME FOR BETTER EXPERIENCE</p>
+
+    </div>
+    <div class="button-container">
+      <a href="#" class="button button--piyo">
+        <div class="button__wrapper">
+          <span class="button__text close-btn">ENTRY</span>
         </div>
-        <div class="button-container">
-          <a href="#" class="button button--piyo">
-       <div class="button__wrapper">
-           <span class="button__text close-btn">ENTRY</span>
-       </div>
-       <div class="characterBox">
-           <div class="character wakeup">
-               <div class="character__face"></div>
-           </div>
-           <div class="character wakeup">
-               <div class="character__face"></div>
-           </div>
-           <div class="character">
-               <div class="character__face"></div>
-           </div>
-       </div>
-   </a>
-         </div>
-      </div>
-    
-    <button onclick="openFullscreen();" class="glow-on-hover" type="button">Open Page in Fullscreen Mode</button>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  $(document).ready(function() {
-    $(".overlay").fadeTo(300, 1); 
+        <div class="characterBox">
+          <div class="character wakeup">
+            <div class="character__face"></div>
+          </div>
+          <div class="character wakeup">
+            <div class="character__face"></div>
+          </div>
+          <div class="character">
+            <div class="character__face"></div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
 
-    $(".close-btn").click(function() {
-      $(".overlay").fadeTo(50, 0, function() { 
-        $(this).removeClass("visible"); 
+  <button onclick="openFullscreen();" class="glow-on-hover" type="button">Fullscreen Mode</button>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $(".overlay").fadeTo(300, 1);
+
+      $(".close-btn").click(function () {
+        $(".overlay").fadeTo(50, 0, function () {
+          $(this).removeClass("visible");
+        });
       });
     });
-  }); 
-  var elem = document.documentElement;
+    var elem = document.documentElement;
     function openFullscreen() {
       if (elem.requestFullscreen) {
         elem.requestFullscreen();
-      } else if (elem.webkitRequestFullscreen) { 
+      } else if (elem.webkitRequestFullscreen) {
         elem.webkitRequestFullscreen();
       } else if (elem.msRequestFullscreen) {
         elem.msRequestFullscreen();
       }
     }
+  </script>
+  <svg xmlns="http://www.w3.org/2000/svg">
 
-    
-</script>
-
+    <filter id="motion-blur-filter" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="100 0"></feGaussianBlur>
+    </filter>
+  </svg>
+  <span filter-content="S" id="leader"></span>
   <ul class="slide-to-right">
     <li id="grass"></li>
     <li id="grassEater"></li>
@@ -104,7 +108,7 @@
   </ul>
 
 
-<script src="js/script.js"></script>
-  
+  <script src="js/script.js"></script>
 </body>
+
 </html>

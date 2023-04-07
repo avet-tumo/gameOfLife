@@ -19,6 +19,7 @@ body {
   background-size: 4%;
   height: 100vh;
   width: 100%;
+  
 }
 
 #time-counter {
@@ -544,13 +545,11 @@ body {
   background: #272822;
   transition: 0.2s;
 }
-
 .weather button:hover i::after {
   width: 15px;
   left: 80%;
   animation: move 3s infinite;
 }
-
 @keyframes move {
   0% {
     transform: translateX(0);
@@ -562,7 +561,6 @@ body {
     transform: translateX(0);
   }
 }
-
 @keyframes box {
   0% {
     box-shadow: #27272c;
@@ -1080,4 +1078,25 @@ body {
   100%{
       height : 28px ;
   }
+}
+#leader {
+  animation: backInLeft 1s;
+  position: absolute;
+  font-family: "Avenir Next", sans-serif;
+  font-weight: 800;
+  top: 15%;
+  left: 1.5%;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  display: inline-block;
+}
+#leader:before {
+  position: absolute;
+  content: attr(filter-content);
+  filter: url(#motion-blur-filter);
+}
+svg {
+  display: none;
 }
