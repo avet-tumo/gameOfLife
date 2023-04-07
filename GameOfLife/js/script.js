@@ -53,15 +53,49 @@ document.querySelector("#newGrass").addEventListener("click", function() {
   });
 
   //weather
-const springAudio = new Audio('../audio/spring.mp3');
-const summerAudio = new Audio('../audio/summer.mp3');
-const autumnAudio = new Audio('../audio/autumn.mp3');
-const winterAudio = new Audio('../audio/winter.mp3');
-const springButton = document.getElementById('spring');
-const summerButton = document.getElementById('summer');
-const autumnButton = document.getElementById('autumn');
-const winterButton = document.getElementById('winter');
 
+  const springAudio = new Audio('../audio/spring.mp3');
+  const summerAudio = new Audio('../audio/summer.mp3');
+  const autumnAudio = new Audio('../audio/autumn.mp3');
+  const winterAudio = new Audio('../audio/winter1.mp3');
+  const springButton = document.getElementById('spring');
+  const summerButton = document.getElementById('summer');
+  const autumnButton = document.getElementById('autumn');
+  const winterButton = document.getElementById('winter');
+  var muteButton = document.getElementById("muteButton");
+  
+  function toggleAudio() {
+    if (springAudio.muted) {
+      springAudio.muted = false;
+    } else {
+      springAudio.muted = true;
+    }
+  
+    if (summerAudio.muted) {
+      summerAudio.muted = false;
+    } else {
+      summerAudio.muted = true;
+    }
+  
+    if (autumnAudio.muted) {
+      autumnAudio.muted = false;
+    } else {
+      autumnAudio.muted = true;
+    }
+  
+    if (winterAudio.muted) {
+      winterAudio.muted = false;
+    } else {
+      winterAudio.muted = true;
+    }
+  
+    if (springAudio.muted && summerAudio.muted && autumnAudio.muted && winterAudio.muted) {
+      muteButton.innerHTML = "<span>Unmute</span><i></i>";
+    } else {
+      muteButton.innerHTML = "<span>Mute</span><i></i>";
+    }
+  }
+  
 springButton.addEventListener('click', function() {
   springAudio.currentTime = 0; 
   springAudio.play(); 

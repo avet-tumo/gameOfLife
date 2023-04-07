@@ -38,17 +38,34 @@
       <button style="--clr:#3ff00e" id="summer"><span>Summer</span><i></i></button>
   <button style="--clr:#c4a412" id="autumn"><span>Autumn</span><i></i></button>
   <button style="--clr:#027bc2" id="winter"><span>Winter</span><i></i></button>
+  <button style="--clr:#a3c4b3" id="muteButton" onclick="toggleAudio()"><span>Mute</span><i></i></button>
     </div>
 
     <div class="overlay fade-in-bottom">
         <div class="overlay-content">
-          <h1>Welcome to Game Of Life</h1>
-          <p>Recommended to enable full-screen mode!</p>
+          <h1 class="welcome">Welcome to Game Of Life</h1>
+          <p class="fp">Recommended to enable full-screen mode!</p>
           <p class="volume">PLEASE TURN ON THE VOLUME FOR BETTER EXPERIENCE</p>
-          <div class="button-container">
-            <button class="close-btn">Close</button>
-          </div>
+         
         </div>
+        <div class="button-container">
+          <a href="#" class="button button--piyo">
+       <div class="button__wrapper">
+           <span class="button__text close-btn">ENTRY</span>
+       </div>
+       <div class="characterBox">
+           <div class="character wakeup">
+               <div class="character__face"></div>
+           </div>
+           <div class="character wakeup">
+               <div class="character__face"></div>
+           </div>
+           <div class="character">
+               <div class="character__face"></div>
+           </div>
+       </div>
+   </a>
+         </div>
       </div>
     
     <button onclick="openFullscreen();" class="glow-on-hover" type="button">Open Page in Fullscreen Mode</button>
